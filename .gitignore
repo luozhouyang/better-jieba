@@ -1,4 +1,6 @@
+.vscode
 
+*.classpath
 # Package Files #
 **.war
 **.ear
