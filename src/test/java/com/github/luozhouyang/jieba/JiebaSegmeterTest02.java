@@ -1,11 +1,10 @@
-package org.manlier.analysis.jieba;
+package com.github.luozhouyang.jieba;
 
+import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
-
-import java.util.List;
 
 @RunWith(JUnit4.class)
 public class JiebaSegmeterTest02 {
@@ -14,8 +13,7 @@ public class JiebaSegmeterTest02 {
 
     @Before
     public void setUp() {
-
-//        WordDictionary.getInstance().init(new FileDictSource(Paths.get("conf")));
+        // WordDictionary.getInstance().init(new FileDictSource(Paths.get("conf")));
     }
 
     @Test

@@ -1,4 +1,4 @@
-package org.manlier.analysis.jieba.dao;
+package com.github.luozhouyang.jieba.dao;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -11,8 +11,7 @@ import java.util.HashSet;
 import java.util.Locale;
 import java.util.Set;
 import java.util.function.Consumer;
-
-import static org.manlier.analysis.jieba.WordDictionary.USER_DICT_SUFFIX;
+import com.github.luozhouyang.jieba.WordDictionary;
 
 /**
  * 文件字典源
@@ -34,8 +33,9 @@ public class FileDictSource implements DictSource {
         }
 
         if (Files.isDirectory(dictPath)) {
-            DirectoryStream<Path> stream = Files.newDirectoryStream(dictPath
-                    , String.format(Locale.getDefault(), "*%s", USER_DICT_SUFFIX));
+            DirectoryStream<Path> stream =
+                    Files.newDirectoryStream(dictPath,
+                            String.format(Locale.getDefault(), "*%s", WordDictionary.USER_DICT_SUFFIX));
             for (Path path : stream) {
                 readFile(consumer, Files.newBufferedReader(path, charset));
             }

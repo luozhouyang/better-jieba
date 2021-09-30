@@ -1,19 +1,17 @@
-package org.manlier.analysis.jieba;
-
-import org.manlier.analysis.jieba.dao.FileDictSource;
-import org.junit.Assert;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.JUnit4;
-import org.manlier.analysis.jieba.dao.InputStreamDictSource;
+package com.github.luozhouyang.jieba;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
-import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.text.DecimalFormat;
 import java.util.List;
+import com.github.luozhouyang.jieba.dao.FileDictSource;
+import com.github.luozhouyang.jieba.dao.InputStreamDictSource;
+import org.junit.Assert;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.JUnit4;
 
 @RunWith(JUnit4.class)
 public class WordDictionaryTest {

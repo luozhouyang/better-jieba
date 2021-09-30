@@ -1,4 +1,4 @@
-package org.manlier.analysis.jieba.dao;
+package com.github.luozhouyang.jieba.dao;
 
 import java.io.BufferedReader;
 import java.io.IOException;

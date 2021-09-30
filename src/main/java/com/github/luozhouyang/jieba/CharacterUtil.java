@@ -1,4 +1,4 @@
-package org.manlier.analysis.jieba;
+package com.github.luozhouyang.jieba;
 
 import java.util.regex.Pattern;
 

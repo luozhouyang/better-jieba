@@ -1,16 +1,22 @@
-package org.manlier.analysis.jieba.viterbi;
+package com.github.luozhouyang.jieba.viterbi;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.Charset;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.Vector;
 import java.util.regex.Matcher;
-
-import org.manlier.analysis.jieba.CharacterUtil;
-import org.manlier.analysis.jieba.Pair;
-import org.manlier.analysis.jieba.Node;
+import com.github.luozhouyang.jieba.CharacterUtil;
+import com.github.luozhouyang.jieba.Node;
+import com.github.luozhouyang.jieba.Pair;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -19,7 +25,7 @@ public class FinalSeg {
     private static FinalSeg singleInstance;
     private static final String PROB_EMIT = "/prob_emit.txt";
     private static final Set<String> FORCE_SPLIT_WORDS = new HashSet<>();
-    private static char[] states = new char[]{'B', 'M', 'E', 'S'};
+    private static char[] states = new char[] {'B', 'M', 'E', 'S'};
     private static Map<Character, Map<Character, Double>> emit;
     private static Map<Character, Double> start;
     private static Map<Character, Map<Character, Double>> trans;
@@ -46,23 +52,23 @@ public class FinalSeg {
         long s = System.currentTimeMillis();
         prevStatus = new HashMap<>();
         // 定义状态转移关系
-        prevStatus.put('B', new char[]{'E', 'S'});  // 表示B之前只可能是End或Single，以下类推
-        prevStatus.put('M', new char[]{'M', 'B'});
-        prevStatus.put('S', new char[]{'S', 'E'});
-        prevStatus.put('E', new char[]{'B', 'M'});
+        prevStatus.put('B', new char[] {'E', 'S'}); // 表示B之前只可能是End或Single，以下类推
+        prevStatus.put('M', new char[] {'M', 'B'});
+        prevStatus.put('S', new char[] {'S', 'E'});
+        prevStatus.put('E', new char[] {'B', 'M'});
 
         start = new HashMap<>();
-        start.put('B', -0.26268660809250016);   //  概率为0.7689828525554734
-        start.put('E', -3.14e+100);             //  概率为0
-        start.put('M', -3.14e+100);             //  概率为0
-        start.put('S', -1.4652633398537678);    //  概率为0.2310171474445266
+        start.put('B', -0.26268660809250016); //  概率为0.7689828525554734
+        start.put('E', -3.14e+100); //  概率为0
+        start.put('M', -3.14e+100); //  概率为0
+        start.put('S', -1.4652633398537678); //  概率为0.2310171474445266
 
         // 转移矩阵
         trans = new HashMap<>();
         Map<Character, Double> transB = new HashMap<>();
         transB.put('E', -0.510825623765990);
         transB.put('M', -0.916290731874155);
-        trans.put('B', transB);                 // B只可能向E跟M转移，以下类推
+        trans.put('B', transB); // B只可能向E跟M转移，以下类推
         Map<Character, Double> transE = new HashMap<>();
         transE.put('B', -0.5897149736854513);
         transE.put('S', -0.8085250474669937);

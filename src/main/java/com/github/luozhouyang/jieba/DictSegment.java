@@ -1,4 +1,4 @@
-package org.manlier.analysis.jieba;
+package com.github.luozhouyang.jieba;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -91,8 +91,7 @@ class DictSegment implements Comparable<DictSegment> {
             searchHit = new Hit();
             // 设置hit的其实文本位置
             searchHit.setBegin(begin);
-        }
-        else {
+        } else {
             // 否则要将HIT状态重置
             searchHit.setUnmatch();
         }
@@ -115,8 +114,7 @@ class DictSegment implements Comparable<DictSegment> {
                 ds = segmentArray[position];
             }
 
-        }
-        else if (segmentMap != null) {
+        } else if (segmentMap != null) {
             // 在map中查找
             ds = (DictSegment) segmentMap.get(keyChar);
         }
@@ -126,8 +124,7 @@ class DictSegment implements Comparable<DictSegment> {
             if (length > 1) {
                 // 词未匹配完，继续往下搜索
                 return ds.match(charArray, begin + 1, length - 1, searchHit);
-            }
-            else if (length == 1) {
+            } else if (length == 1) {
 
                 // 搜索最后一个char
                 if (ds.nodeState == 1) {
@@ -194,8 +191,7 @@ class DictSegment implements Comparable<DictSegment> {
             if (length > 1) {
                 // 词元还没有完全加入词典树
                 ds.fillSegment(charArray, begin + 1, length - 1, enabled);
-            }
-            else if (length == 1) {
+            } else if (length == 1) {
                 // 已经是词元的最后一个char,设置当前节点状态为enabled，
                 // enabled=1表明一个完整的词，enabled=0表示从词典中屏蔽当前词
                 ds.nodeState = enabled;
@@ -237,8 +233,7 @@ class DictSegment implements Comparable<DictSegment> {
                     this.storeSize++;
                     Arrays.sort(segmentArray, 0, this.storeSize);
 
-                }
-                else {
+                } else {
                     // 数组容量已满，切换Map存储
                     // 获取Map容器，如果Map未创建,则创建Map
                     Map<Character, DictSegment> segmentMap = getChildrenMap();
@@ -254,8 +249,7 @@ class DictSegment implements Comparable<DictSegment> {
 
             }
 
-        }
-        else {
+        } else {
             // 获取Map容器，如果Map未创建,则创建Map
             Map<Character, DictSegment> segmentMap = getChildrenMap();
             // 搜索Map

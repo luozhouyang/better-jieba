@@ -1,15 +1,17 @@
-package org.manlier.analysis.jieba;
+package com.github.luozhouyang.jieba;
 
 import java.io.IOException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.regex.Pattern;
-
-import org.manlier.analysis.jieba.dao.DictSource;
-import org.manlier.analysis.jieba.viterbi.FinalSeg;
+import com.github.luozhouyang.jieba.dao.DictSource;
+import com.github.luozhouyang.jieba.viterbi.FinalSeg;
+import org.reactivestreams.Subscriber;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
 import io.reactivex.processors.PublishProcessor;
-import org.reactivestreams.Subscriber;
 
 
 public class JiebaSegmenter {
@@ -18,8 +20,7 @@ public class JiebaSegmenter {
     private PublishProcessor<List<Pair<String>>> processor;
 
     public enum SegMode {
-        INDEX,
-        SEARCH
+        INDEX, SEARCH
     }
 
     public JiebaSegmenter() {
@@ -63,8 +64,7 @@ public class JiebaSegmenter {
         double segmentPercent = Math.pow(Math.E, wordDict.freqs.getOrDefault(segment, Math.log(0d)));
 
         // 要将segment分出来，要满足 P(segment) = max{P(segment}, p(seg1)*p(seg2), p(seg1)*p(seg2)*p(seg3)}
-        freq = Math.max(freq + 1.0d / wordDict.total
-                , segmentPercent);
+        freq = Math.max(freq + 1.0d / wordDict.total, segmentPercent);
 
         // 得到将segment分出来的频率
         long actualFreq = (long) (freq * wordDict.total);
@@ -323,7 +323,7 @@ public class JiebaSegmenter {
             // 如果找到的是中文字符，加入处理语块中
             if (CharacterUtil.ccFind(ch))
                 sb.append(ch);
-                // 遇到标点符号或尾部，开始处理语块
+            // 遇到标点符号或尾部，开始处理语块
             else {
                 if (sb.length() > 0) {
                     tokenList = sentenceProcess(sb.toString());

@@ -1,22 +1,22 @@
-package org.manlier.analysis.jieba;
+package com.github.luozhouyang.jieba;
 
-import org.manlier.analysis.jieba.dao.DictSource;
-import org.manlier.analysis.jieba.dao.FileDictSource;
-import org.manlier.analysis.jieba.dao.InputStreamDictSource;
-import org.manlier.analysis.jieba.viterbi.FinalSeg;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import java.net.URISyntaxException;
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
-import java.nio.file.Paths;
-import java.util.*;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+import com.github.luozhouyang.jieba.dao.DictSource;
+import com.github.luozhouyang.jieba.dao.InputStreamDictSource;
+import com.github.luozhouyang.jieba.viterbi.FinalSeg;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 
 public class WordDictionary {
-    private static WordDictionary singleton;                 // 全局单列
+    private static WordDictionary singleton; // 全局单列
     private static DictSource MAIN_DICT; //  默认字典采用文件字典
     private static final String CONFIG_NAME = "jieba.defaultDict";
     private Logger log = LoggerFactory.getLogger(getClass().getSimpleName());
@@ -26,14 +26,13 @@ public class WordDictionary {
                 .getResourceAsStream("/dict.txt"));
     }
 
-    public static String USER_DICT_SUFFIX = ".dict";        //  用户字典后缀
+    public static String USER_DICT_SUFFIX = ".dict"; //  用户字典后缀
 
-    public final Map<String, Double> freqs = new HashMap<>();   //  记录单词频率
-    private Double minFreq = Double.MAX_VALUE;  // 单词所能达到的最大频率
-    public Double total = 0.0;                 // 所有单词的频率之和
-    private DictSegment _dict = new DictSegment((char) 0);
-    ;
-    private boolean useDefaultDict = true;      // 是否使用默认字典
+    public final Map<String, Double> freqs = new HashMap<>(); //  记录单词频率
+    private Double minFreq = Double.MAX_VALUE; // 单词所能达到的最大频率
+    public Double total = 0.0; // 所有单词的频率之和
+    private DictSegment _dict = new DictSegment((char) 0);;
+    private boolean useDefaultDict = true; // 是否使用默认字典
 
 
     private WordDictionary() {
@@ -118,7 +117,8 @@ public class WordDictionary {
             });
             // normalize
             normalizeFreqs(freqs);
-            log.debug("main dict load finished, total {}, time elapsed {} ms", count[0], System.currentTimeMillis() - s);
+            log.debug("main dict load finished, total {}, time elapsed {} ms", count[0],
+                    System.currentTimeMillis() - s);
         } catch (IOException e) {
             log.error(MAIN_DICT + "load failure!", e);
         }
@@ -170,7 +170,8 @@ public class WordDictionary {
             });
             normalizeFreqs(toBeMergefreqs);
             freqs.putAll(toBeMergefreqs);
-            log.debug("user dict {} load finished, tot words:{}, time elapsed:{} ms", userDict, count[0], System.currentTimeMillis() - s);
+            log.debug("user dict {} load finished, tot words:{}, time elapsed:{} ms", userDict, count[0],
+                    System.currentTimeMillis() - s);
             return changeList;
         }
     }

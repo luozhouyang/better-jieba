@@ -1,4 +1,4 @@
-package org.manlier.analysis.jieba;
+package com.github.luozhouyang.jieba;
 
 public class Node {
     public Character value;

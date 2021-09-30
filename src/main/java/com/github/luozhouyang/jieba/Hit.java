@@ -23,7 +23,7 @@
  * provided by Linliangyi and copyright 2012 by Oolong studio
  * 
  */
-package org.manlier.analysis.jieba;
+package com.github.luozhouyang.jieba;
 
 /**
  * 表示一次词典匹配的命中

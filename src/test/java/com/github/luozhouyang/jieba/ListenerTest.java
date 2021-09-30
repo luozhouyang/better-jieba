@@ -1,12 +1,11 @@
-package org.manlier.analysis.jieba;
+package com.github.luozhouyang.jieba;
 
+import java.io.IOException;
+import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
-
-import java.io.IOException;
-import java.util.List;
 
 @RunWith(JUnit4.class)
 public class ListenerTest {
@@ -26,7 +25,7 @@ public class ListenerTest {
         List<String> strings = segmenter.sentenceProcess("如果放到post中将出错");
         System.out.println(String.join("/", strings));
         System.out.println("split1");
-        segmenter.suggestFreq(true,"中", "将");
+        segmenter.suggestFreq(true, "中", "将");
         strings = segmenter.sentenceProcess("如果放到post中将出错");
         System.out.println(String.join("/", strings));
         System.out.println("add1");
@@ -34,7 +33,7 @@ public class ListenerTest {
         strings = segmenter.sentenceProcess("如果放到post中将出错");
         System.out.println(String.join("/", strings));
         System.out.println("split2");
-        segmenter.suggestFreq(true,"中", "将");
+        segmenter.suggestFreq(true, "中", "将");
         strings = segmenter.sentenceProcess("如果放到post中将出错");
         System.out.println(String.join("/", strings));
     }

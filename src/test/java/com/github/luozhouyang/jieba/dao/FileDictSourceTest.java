@@ -1,13 +1,12 @@
-package org.manlier.analysis.jieba.dao;
-
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.JUnit4;
+package com.github.luozhouyang.jieba.dao;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.nio.file.Paths;
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.JUnit4;
 
 @RunWith(JUnit4.class)
 public class FileDictSourceTest {
