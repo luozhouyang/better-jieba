@@ -1,4 +1,7 @@
 .vscode
+.gradle
+bin
+build
 
 *.classpath
 # Package Files #
